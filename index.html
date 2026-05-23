@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FreeBox Storage - prototype website penyimpanan file gratis dengan login, upload, download, dan kuota 1TB." />
+  <title>FreeBox Storage - Penyimpanan File Gratis 1TB</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">☁️</div>
+        <span>FreeBox Storage</span>
+      </div>
+
+      <div id="guestNav" class="pill">Gratis sampai 1TB</div>
+
+      <div id="userNav" class="user-bar hidden">
+        <span id="activeUser" class="pill"></span>
+        <button id="logoutBtn" class="secondary">Keluar</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="authPage" class="hero">
+      <div class="hero-card">
+        <div class="badge">Penyimpanan file gratis</div>
+        <h1>Simpan file kamu dengan akun pribadi.</h1>
+        <p class="subtitle">
+          Website ini dibuat untuk menyimpan berbagai file atau berkas. Pengguna harus daftar dan login terlebih dahulu agar file tersimpan berdasarkan akun, bukan anonim.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>1TB</strong>
+            <span>Kuota maksimum per akun</span>
+          </div>
+          <div class="stat">
+            <strong>Login</strong>
+            <span>File dipisah per pengguna</span>
+          </div>
+          <div class="stat">
+            <strong>Gratis</strong>
+            <span>Siap deploy ke GitHub Pages</span>
+          </div>
+        </div>
+
+        <p class="note">
+          Catatan: versi GitHub Pages ini adalah frontend statis. File disimpan di browser/perangkat pengguna memakai IndexedDB. Untuk penyimpanan online asli 1TB, perlu backend dan cloud/server storage.
+        </p>
+      </div>
+
+      <div class="auth-card">
+        <div class="tabs">
+          <button id="loginTab" class="tab active">Login</button>
+          <button id="registerTab" class="tab">Daftar</button>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" type="email" placeholder="contoh@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" placeholder="Masukkan password" required />
+          </div>
+          <button class="full-btn" type="submit">Masuk</button>
+        </form>
+
+        <form id="registerForm" class="hidden">
+          <div class="form-group">
+            <label for="registerName">Nama</label>
+            <input id="registerName" type="text" placeholder="Nama kamu" minlength="3" required />
+          </div>
+          <div class="form-group">
+            <label for="registerEmail">Email</label>
+            <input id="registerEmail" type="email" placeholder="contoh@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <input id="registerPassword" type="password" placeholder="Minimal 6 karakter" minlength="6" required />
+          </div>
+          <button class="full-btn" type="submit">Buat Akun</button>
+        </form>
+
+        <div id="authMessage" class="message hidden"></div>
+      </div>
+    </section>
+
+    <section id="dashboardPage" class="dashboard hidden">
+      <div class="panel storage-card">
+        <div class="panel-title">
+          <h2>Dashboard Penyimpanan</h2>
+          <span class="pill">Kuota akun: 1TB</span>
+        </div>
+        <div class="progress-wrap">
+          <div id="storageBar" class="progress-bar"></div>
+        </div>
+        <div class="quota-info">
+          <span id="usedStorage">Terpakai: 0 B</span>
+          <span id="freeStorage">Sisa: 1 TB</span>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="panel">
+          <div class="panel-title">
+            <h2>Upload File</h2>
+          </div>
+
+          <div id="dropZone" class="drop-zone">
+            <div class="drop-icon">📁</div>
+            <h3>Tarik file ke sini</h3>
+            <p>Atau pilih file dari perangkat kamu.</p>
+            <label for="fileInput" class="btn">Pilih File</label>
+            <input id="fileInput" type="file" multiple />
+          </div>
+
+          <div id="uploadMessage" class="message hidden"></div>
+          <p class="note">
+            File disimpan sesuai akun yang sedang login. Pada versi prototype ini, file tersimpan di browser/perangkat yang sama.
+          </p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">
+            <h2>File Saya</h2>
+          </div>
+
+          <div class="tools">
+            <input id="searchInput" type="text" placeholder="Cari nama file..." />
+            <button id="refreshBtn" class="secondary">Refresh</button>
+          </div>
+
+          <div id="fileList" class="file-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    FreeBox Storage © 2026 - HTML, CSS, JavaScript
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
